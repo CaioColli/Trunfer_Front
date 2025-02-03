@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+:root {
+    --backgroundColor: #5A7583;
+    --transparenrtBackgroundColor: rgba(255, 255, 255, 0.1);
+    --whiteBorderColor: #DBDBDB;
+    --whiteColor: #FFFFFF;
+    --grayBackgroundColor: #CDCDCD;
+    --grayColor: #B7DD8E;
+}
+
+.pageContainer {
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 1920px;
+}
+

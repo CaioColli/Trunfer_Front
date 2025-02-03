@@ -1,3 +1,5 @@
 "Utils" -> Armazena funções puras ou funções utilitárias
 
 "funções utilitárias" -> Podem ser puras ou não, geralmente usadas para chamadas de API, manipular o localStorage ou formatações.
+
+(CSS) Usei nessa aplicação "CSS Modules" para evitar que classes CSS interfiram entre si quando se usa o mesmo nome de classe em componentes diferentes.

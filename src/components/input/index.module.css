@@ -1,0 +1,68 @@
+.inputDiv {
+    position: relative;
+    width: 100%;
+}
+
+.label {
+    display: none;
+    animation: labelSlideDown 0.2s forwards;
+    background-color: var(--backgroundColor);
+    color: var(--whiteColor);
+    font-size: 12px;
+    left: 5%;
+    opacity: 0;
+    padding: 0 8px 0 8px;
+    position: absolute;
+    top: 0;
+    transition: all 0.2s ease-in-out;
+    visibility: visible;
+}
+
+.input {
+    all: unset;
+    color: var(--whiteColor);
+    border: 2px solid var(--whiteBorderColor);
+    border-radius: 8px;
+    width: 304px;
+    padding: 16px;
+}
+
+.input::placeholder {
+    color: var(--whiteColor);
+}
+
+.inputDiv:has(.input:not(:placeholder-shown)) .label {
+    animation: labelSlideUp 0.2s forwards;
+    opacity: 1;
+    top: -10%;
+    visibility: visible;
+    display: block;
+}
+
+@keyframes labelSlideUp {
+    from {
+        top: 0;
+        opacity: 0;
+        display: none;
+    }
+
+    to {
+        top: -10%;
+        opacity: 1;
+        display: block;
+    }
+}
+
+@keyframes labelSlideDown {
+    from {
+        top: -10%;
+        opacity: 1;
+        display: block;
+    }
+
+    to {
+        top: 0;
+        opacity: 0;
+        display: none;
+    }
+}

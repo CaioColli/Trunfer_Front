@@ -1,0 +1,60 @@
+.section {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(180deg, var(--backgroundColor) 57%, #141a1d 100%);
+}
+
+.leftSideDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 40%;
+    background-color: var(--transparenrtBackgroundColor);
+    height: 100%;
+}
+
+.rightSideDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 60%;
+    height: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    width: 340px;
+}
+
+.inputsDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.buttonsDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.backToLogin{
+    all: unset;
+    text-align: center;
+    color: var(--whiteColor);
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--grayColor);
+    }
+}
+
+@media (width < 1280px) {
+    .sideImage {
+        width: 300px;
+    }
+}
