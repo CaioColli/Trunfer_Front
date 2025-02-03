@@ -1,0 +1,3 @@
+"Utils" -> Armazena funções puras ou funções utilitárias
+
+"funções utilitárias" -> Podem ser puras ou não, geralmente usadas para chamadas de API, manipular o localStorage ou formatações.
