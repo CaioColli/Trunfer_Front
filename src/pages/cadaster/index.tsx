@@ -3,6 +3,9 @@ import { Button } from '../../components/button'
 import { Input } from '../../components/input'
 import styles from './index.module.css'
 import { Link } from 'wouter';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '../../services/baseAPI';
+import { Alert } from '../../components/alert';
 
 export const Cadaster = () => {
     const [name, setName] = useState('');
@@ -10,13 +13,41 @@ export const Cadaster = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const mutation = useMutation({
+        mutationFn: (newUser: { user_Name: string; user_Email: string; user_Password: string }) =>
+            api.post('/user/cadaster', newUser),
+        onSuccess: (response) => {
+            console.log(response.data.message);
+            // Você pode redirecionar ou mostrar uma mensagem de sucesso aqui
+        },
+        onError: (error) => {
+            console.error('Erro ao cadastrar usuário', error);
+            // Trate o erro, exibindo uma mensagem para o usuário, por exemplo
+        }
+    });
+
     const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log('Dados enviados', name, email, password, confirmPassword);
+
+        if (password !== confirmPassword) {
+            alert("Senhas diferentes");
+            return;
+        }
+
+        const newUser = { 
+            user_Name: name,
+            user_Email: email,
+            user_Password: password
+         };
+
+        console.log('Enviando dados:', newUser);
+        mutation.mutate(newUser);
     }
 
     return (
         <section className={styles.section}>
+            <Alert />
+
             <div className={styles.leftSideDiv}>
                 <img src="../../../public/images/logoImage.svg" alt="Imagem decorativa super trunfo" className={styles.sideImage} />
             </div>

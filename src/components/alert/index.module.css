@@ -1,0 +1,12 @@
+.bodyAlert {
+    z-index: 999;
+    text-align: center;
+    
+    min-width: 280px;
+    width: 30%;
+    padding: 16px;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%);
+}

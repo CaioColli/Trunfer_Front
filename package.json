@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.66.0",
+    "axios": "^1.7.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "wouter": "^3.5.1"
@@ -28,5 +30,7 @@
     "vite": "^6.0.5"
   },
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": "git@github.com:CaioColli/SuperTrunfo-Front.git",
+  "author": "Caio <caiocolli22@gmail.com>"
 }
