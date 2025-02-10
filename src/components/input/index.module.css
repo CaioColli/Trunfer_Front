@@ -6,9 +6,8 @@
 .label {
     display: none;
     animation: labelSlideDown 0.2s forwards;
-    background-color: var(--backgroundColor);
-    color: var(--whiteColor);
-    font-size: 12px;
+    background-color: var(--white);
+    color: var(--darkBlue);
     left: 5%;
     opacity: 0;
     padding: 0 8px 0 8px;
@@ -20,10 +19,10 @@
 
 .input {
     all: unset;
-    color: var(--whiteColor);
-    border: 2px solid var(--whiteBorderColor);
+    color: var(--darkBlue);
+    border: 2px solid var(--darkBlue);
     border-radius: 8px;
-    width: 304px;
+    width: 300px;
     padding: 16px;
 }
 
@@ -64,5 +63,11 @@
         top: 0;
         opacity: 0;
         display: none;
+    }
+}
+
+@media screen and (width < 440px) {
+    .input {
+        max-width: 200px;
     }
 }

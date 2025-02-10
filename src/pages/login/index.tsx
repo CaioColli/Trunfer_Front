@@ -3,6 +3,7 @@ import { Button } from '../../components/button';
 import { Input } from '../../components/input';
 import styles from './index.module.css';
 import { Link } from 'wouter';
+import { BoxOfInputs } from '../../components/inputBox';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
@@ -15,30 +16,28 @@ export const Login = () => {
 
     return (
         <section className={styles.section}>
-            <div className={styles.leftSideDiv}>
-                <img src="../../../public/images/logoImage.svg" alt="Imagem decorativa super trunfo" className={styles.sideImage} />
-            </div>
+            <form className={styles.form} onSubmit={submitForm}>
+                <BoxOfInputs
+                    text="LOGIN"
+                >
+                    <Input
+                        placeholder="Email"
+                        type='email'
+                        onChange={(event) => setEmail(event.target.value)}
+                    />
 
-            <div className={styles.rightSideDiv}>
-                <form className={styles.form} onSubmit={submitForm}>
-                    <div className={styles.inputsDiv}>
-                        <Input
-                            placeholder="Email"
-                            type='email'
-                            onChange={(event) => setEmail(event.target.value)}
-                        />
-
-                        <Input
-                            placeholder="Senha"
-                            type='password'
-                            onChange={(event) => setPassword(event.target.value)}
-                        />
-                    </div>
+                    <Input
+                        placeholder="Senha"
+                        type='password'
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
 
                     <div className={styles.buttonsDiv}>
                         <Button
                             text="Entrar"
                             click={() => { }}
+                            isActive={false}
+                            disabled={true}
                         />
 
                         <button className={styles.forgotPasswordButton}>
@@ -49,8 +48,9 @@ export const Login = () => {
                             Criar conta
                         </Link>
                     </div>
-                </form>
-            </div>
+
+                </BoxOfInputs>
+            </form>
         </section>
     )
 }

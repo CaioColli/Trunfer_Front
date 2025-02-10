@@ -6,6 +6,7 @@ import { Link } from 'wouter';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '../../services/baseAPI';
 import { Alert } from '../../components/alert';
+import { BoxOfInputs } from '../../components/inputBox';
 
 export const Cadaster = () => {
     const [name, setName] = useState('');
@@ -34,11 +35,11 @@ export const Cadaster = () => {
             return;
         }
 
-        const newUser = { 
+        const newUser = {
             user_Name: name,
             user_Email: email,
             user_Password: password
-         };
+        };
 
         console.log('Enviando dados:', newUser);
         mutation.mutate(newUser);
@@ -46,52 +47,50 @@ export const Cadaster = () => {
 
     return (
         <section className={styles.section}>
-            <Alert />
+            {/* <Alert /> */}
+            <form className={styles.form} onSubmit={submitForm}>
+                <BoxOfInputs
+                    text='CADASTRO'
+                >
+                    <Input
+                        placeholder="Nome"
+                        type='text'
+                        onChange={(event) => setName(event.target.value)}
+                    />
 
-            <div className={styles.leftSideDiv}>
-                <img src="../../../public/images/logoImage.svg" alt="Imagem decorativa super trunfo" className={styles.sideImage} />
-            </div>
+                    <Input
+                        placeholder="Email"
+                        type='email'
+                        onChange={(event) => setEmail(event.target.value)}
+                    />
 
-            <div className={styles.rightSideDiv}>
-                <form className={styles.form} onSubmit={submitForm}>
-                    <div className={styles.inputsDiv}>
-                        <Input
-                            placeholder="Nome"
-                            type='text'
-                            onChange={(event) => setName(event.target.value)}
-                        />
+                    <Input
+                        placeholder="Senha"
+                        type='password'
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
 
-                        <Input
-                            placeholder="Email"
-                            type='email'
-                            onChange={(event) => setEmail(event.target.value)}
-                        />
-
-                        <Input
-                            placeholder="Senha"
-                            type='password'
-                            onChange={(event) => setPassword(event.target.value)}
-                        />
-
-                        <Input
-                            placeholder="Confirme sua senha"
-                            type='password'
-                            onChange={(event) => setConfirmPassword(event.target.value)}
-                        />
-                    </div>
+                    <Input
+                        placeholder="Confirme sua senha"
+                        type='password'
+                        onChange={(event) => setConfirmPassword(event.target.value)}
+                    />
 
                     <div className={styles.buttonsDiv}>
                         <Button
                             text="Cadastrar"
                             click={() => { }}
+                            isActive={false}
+                            disabled={true}
                         />
 
                         <Link to="/" className={styles.backToLogin}>
                             Voltar ao login
                         </Link>
                     </div>
-                </form>
-            </div>
+                </BoxOfInputs>
+
+            </form>
         </section>
     )
 }

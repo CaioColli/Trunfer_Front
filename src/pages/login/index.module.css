@@ -1,60 +1,41 @@
 .section {
     align-items: center;
+    justify-content: center;
     display: flex;
     height: 100vh;
-    background: linear-gradient(180deg, var(--backgroundColor) 57%, #141a1d 100%);
-}
-
-.leftSideDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 40%;
-    background-color: var(--transparenrtBackgroundColor);
-    height: 100%;
-}
-
-.rightSideDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 60%;
-    height: 100%;
+    background: linear-gradient(270deg, var(--darkBlue) 13%, var(--blue) 100%);
 }
 
 .form {
     display: flex;
     flex-direction: column;
     gap: 48px;
-    width: 340px;
-}
-
-.inputsDiv {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
 }
 
 .buttonsDiv {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
     gap: 16px;
 }
 
-.forgotPasswordButton, .creatAccountButton {
+.forgotPasswordButton,
+.creatAccountButton {
     all: unset;
     text-align: center;
-    color: var(--whiteColor);
+    color: var(--darkBlue);
     transition: all 0.2s ease-in;
     cursor: pointer;
 
     &:hover {
-        color: var(--grayColor);
+        color: var(--yellow);
     }
 }
 
-@media (width < 1280px) {
-    .sideImage {
-        width: 300px;
+@media screen and (width < 440px) {
+    .buttonsDiv {
+        width: 200px;
     }
 }

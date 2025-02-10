@@ -2,16 +2,28 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Galey', sans-serif;
+}
+
+@font-face {
+    font-family: 'Fredoka';
+    src: url('../../../public/fonts/FredokaOne.ttf');
+}
+
+@font-face {
+    font-family: 'Galey';
+    src: url('../../../public/fonts/Galey.ttf');
 }
 
 :root {
-    --backgroundColor: #5A7583;
-    --transparenrtBackgroundColor: rgba(255, 255, 255, 0.1);
-    --whiteBorderColor: #DBDBDB;
-    --whiteColor: #FFFFFF;
-    --grayBackgroundColor: #CDCDCD;
-    --grayColor: #B7DD8E;
+    --yellow: #FFBF3F;
+    --lightBlue: #0086DD;
+    --darkBlue: #004877;
+    --blue: #1477B8;
+    --transparentBlue: rgba(12, 100, 158, 0.4);
+    --white: #F8F8F8;
+    --black: #303030;
+    --gray: #A4A4A4;
 }
 
 .pageContainer {
