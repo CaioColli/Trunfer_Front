@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../../components/button'
 import { Input } from '../../components/input'
 import styles from './index.module.css'
@@ -14,12 +14,26 @@ export const Cadaster = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const [isButtonActive, setIsButtonActive] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if (name && email && password && confirmPassword !== '') {
+            setIsButtonActive(true);
+        }
+    }, [name, email, password, confirmPassword]);
+
     const mutation = useMutation({
         mutationFn: (newUser: { user_Name: string; user_Email: string; user_Password: string }) =>
             api.post('/user/cadaster', newUser),
-        onSuccess: (response) => {
-            console.log(response.data.message);
-            // Você pode redirecionar ou mostrar uma mensagem de sucesso aqui
+        onSuccess: () => {
+            setShowAlert(true);
+            setTimeout(() => setShowAlert(false), 4000);
+
+            setName('');
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
         },
         onError: (error) => {
             console.error('Erro ao cadastrar usuário', error);
@@ -31,7 +45,8 @@ export const Cadaster = () => {
         event.preventDefault();
 
         if (password !== confirmPassword) {
-            alert("Senhas diferentes");
+            // Fazer um texto logo abaixo do campo confirme sua senha para mostrar o erro
+            alert('As senhas precisam ser iguais');
             return;
         }
 
@@ -47,7 +62,14 @@ export const Cadaster = () => {
 
     return (
         <section className={styles.section}>
-            {/* <Alert /> */}
+            {showAlert && (
+                <Alert
+                    alertType='success'
+                    message='Cadastro realizado com sucesso'
+                    onClose={() => { setShowAlert(false) }}
+                />
+            )}
+
             <form className={styles.form} onSubmit={submitForm}>
                 <BoxOfInputs
                     text='CADASTRO'
@@ -56,32 +78,34 @@ export const Cadaster = () => {
                         placeholder="Nome"
                         type='text'
                         onChange={(event) => setName(event.target.value)}
+                        value={name}
                     />
 
                     <Input
                         placeholder="Email"
                         type='email'
                         onChange={(event) => setEmail(event.target.value)}
+                        value={email}
                     />
 
                     <Input
                         placeholder="Senha"
                         type='password'
                         onChange={(event) => setPassword(event.target.value)}
+                        value={password}
                     />
 
                     <Input
                         placeholder="Confirme sua senha"
                         type='password'
                         onChange={(event) => setConfirmPassword(event.target.value)}
+                        value={confirmPassword}
                     />
 
                     <div className={styles.buttonsDiv}>
                         <Button
                             text="Cadastrar"
-                            click={() => { }}
-                            isActive={false}
-                            disabled={true}
+                            disabled={isButtonActive}
                         />
 
                         <Link to="/" className={styles.backToLogin}>

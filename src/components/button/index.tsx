@@ -2,17 +2,13 @@ import styles from './index.module.css'
 
 interface ButtonProps {
     text: string;
-    click: () => void;
-    isActive: boolean;
     disabled: boolean
 }
 
-export const Button = ({ text, click, isActive = false, disabled }: ButtonProps) => {
+export const Button = ({ text, disabled }: ButtonProps) => {
     return (
         <button
-            onClick={click}
-            className={`${styles.button} ${isActive ? styles.activeButton : ''}`}
-            disabled={disabled}
+            className={`${styles.button} ${disabled ? styles.activeButton : ''}`}
         >
             {text}
         </button>

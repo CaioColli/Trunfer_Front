@@ -1,12 +1,13 @@
 import styles from './index.module.css'
 
 interface InputProps {
-    placeholder: string
-    type: 'text' | 'password' | 'email'
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    placeholder: string;
+    type: 'text' | 'password' | 'email';
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    value: string;
 }
 
-export const Input = ({ placeholder, type, onChange }: InputProps) => {
+export const Input = ({ placeholder, type, onChange, value }: InputProps) => {
     return (
         <div className={styles.inputDiv}>
             <label className={styles.label}>
@@ -17,6 +18,7 @@ export const Input = ({ placeholder, type, onChange }: InputProps) => {
                 className={styles.input}
                 placeholder={placeholder}
                 onChange={onChange}
+                value={value}
             />
         </div>
     )

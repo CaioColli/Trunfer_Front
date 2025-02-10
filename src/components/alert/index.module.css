@@ -1,12 +1,49 @@
 .bodyAlert {
-    z-index: 999;
-    text-align: center;
-    
+    border-radius: 8px;
+    left: 50%;
+    top: 5%;
     min-width: 280px;
-    width: 30%;
     padding: 16px;
     position: absolute;
-    top: 0px;
-    left: 50%;
+    text-align: center;
     transform: translate(-50%);
+    width: 30%;
+    z-index: 999;
+    animation: alertStartAnimation 1s ease-in, alertEndAnimation 1s ease-in 2s forwards;
+}
+
+@keyframes alertStartAnimation {
+    from {
+        top: -5%;
+        opacity: 0;
+    }
+
+    to {
+        top: 5%;
+        opacity: 1;
+    }
+}
+
+@keyframes alertEndAnimation {
+    from {
+        top: 5%;
+        opacity: 1;
+    }
+
+    to {
+        top: -5%;
+        opacity: 0;
+    }
+}
+
+
+
+.success {
+    background-color: rgba(78, 177, 47, 0.6);
+    color: var(--white);
+}
+
+.error {
+    background-color: rgba(246, 66, 68, 0.6);
+    color: var(--white);
 }
