@@ -19,11 +19,12 @@
 
 .input {
     all: unset;
-    color: var(--darkBlue);
-    border: 2px solid var(--darkBlue);
     border-radius: 8px;
-    width: 300px;
-    padding: 16px;
+    border: 2px solid var(--darkBlue);
+    color: var(--darkBlue);
+    padding: 16px 0;
+    text-indent: 16px;
+    width: 100%;
 }
 
 .input::placeholder {
@@ -63,11 +64,5 @@
         top: 0;
         opacity: 0;
         display: none;
-    }
-}
-
-@media screen and (width < 440px) {
-    .input {
-        max-width: 200px;
     }
 }

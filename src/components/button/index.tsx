@@ -6,9 +6,13 @@ interface ButtonProps {
 }
 
 export const Button = ({ text, disabled }: ButtonProps) => {
+    const buttonClasses = disabled
+        ? `${styles.button} ${styles.activeButton}`
+        : styles.button
+
     return (
         <button
-            className={`${styles.button} ${disabled ? styles.activeButton : ''}`}
+            className={buttonClasses}
         >
             {text}
         </button>

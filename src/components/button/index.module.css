@@ -1,18 +1,24 @@
 .button {
     all: unset;
     text-align: center;
-    color: var(--whiteColor);
+    color: var(--white);
     width: 100%;
     background-color: var(--gray);
-    cursor: not-allowed;
     padding: 16px 0;
     border-radius: 8px;
     font-weight: bold;
     font-size: 18px;
+    pointer-events: none;
 }
 
 .activeButton {
     background-color: var(--darkBlue);
     cursor: pointer;
     color: var(--white);
+    pointer-events: all;
+    transition: all 0.2s ease-in;
+
+    &:hover {
+        box-shadow: 4px 4px 0 var(--gray);
+    }
 }

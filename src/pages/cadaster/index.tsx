@@ -1,10 +1,11 @@
+import styles from './index.module.css'
 import { useEffect, useState } from 'react';
+import { AxiosError } from 'axios';
+import { useMutation } from '@tanstack/react-query';
+import { Link, useLocation } from 'wouter';
+import { api } from '../../services/baseAPI';
 import { Button } from '../../components/button'
 import { Input } from '../../components/input'
-import styles from './index.module.css'
-import { Link } from 'wouter';
-import { useMutation } from '@tanstack/react-query';
-import { api } from '../../services/baseAPI';
 import { Alert } from '../../components/alert';
 import { BoxOfInputs } from '../../components/inputBox';
 
@@ -14,13 +15,22 @@ export const Cadaster = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [isButtonActive, setIsButtonActive] = useState(false);
+    const [, setLocation] = useLocation();
+
+    const [warning, setWarning] = useState(false);
+    const [warningMessage, setWarningMessage] = useState<string[]>([]);
+
+    const [buttonVisibility, setIsButtonVisibility] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
-        if (name && email && password && confirmPassword !== '') {
-            setIsButtonActive(true);
+        if (name !== '' && email !== '' && password !== '' && confirmPassword !== '') {
+            setIsButtonVisibility(true);
+        } else {
+            setIsButtonVisibility(false);
         }
+
+        setWarning(false);
     }, [name, email, password, confirmPassword]);
 
     const mutation = useMutation({
@@ -28,16 +38,26 @@ export const Cadaster = () => {
             api.post('/user/cadaster', newUser),
         onSuccess: () => {
             setShowAlert(true);
-            setTimeout(() => setShowAlert(false), 4000);
+
+            setTimeout(() => {
+                setShowAlert(false);
+                setLocation('/');
+              }, 3000);
 
             setName('');
             setEmail('');
             setPassword('');
             setConfirmPassword('');
         },
-        onError: (error) => {
-            console.error('Erro ao cadastrar usuário', error);
-            // Trate o erro, exibindo uma mensagem para o usuário, por exemplo
+        onError: (error: AxiosError<{ errors: string[] }>) => {
+            setWarning(true);
+            setTimeout(() => setWarning(false), 8000);
+
+            if (error.response?.data?.errors) {
+                setWarningMessage(error.response.data.errors);
+            } else {
+                setWarningMessage(['Erro desconhecido ao cadastrar usuário.']);
+            }
         }
     });
 
@@ -45,8 +65,9 @@ export const Cadaster = () => {
         event.preventDefault();
 
         if (password !== confirmPassword) {
-            // Fazer um texto logo abaixo do campo confirme sua senha para mostrar o erro
-            alert('As senhas precisam ser iguais');
+            setWarning(true);
+            setTimeout(() => setWarning(false), 8000);
+            setWarningMessage(['As senhas devem ser iguais.']);
             return;
         }
 
@@ -56,7 +77,6 @@ export const Cadaster = () => {
             user_Password: password
         };
 
-        console.log('Enviando dados:', newUser);
         mutation.mutate(newUser);
     }
 
@@ -70,10 +90,10 @@ export const Cadaster = () => {
                 />
             )}
 
-            <form className={styles.form} onSubmit={submitForm}>
-                <BoxOfInputs
-                    text='CADASTRO'
-                >
+            <BoxOfInputs
+                text='CADASTRO'
+            >
+                <form className={styles.form} onSubmit={submitForm}>
                     <Input
                         placeholder="Nome"
                         type='text'
@@ -102,19 +122,26 @@ export const Cadaster = () => {
                         value={confirmPassword}
                     />
 
+                    {warning && (
+                        <div className={styles.warnings}>
+                            {warningMessage.map((message, index) => (
+                                <p key={index}>{message}</p>
+                            ))}
+                        </div>
+                    )}
+
                     <div className={styles.buttonsDiv}>
                         <Button
                             text="Cadastrar"
-                            disabled={isButtonActive}
+                            disabled={buttonVisibility}
                         />
 
                         <Link to="/" className={styles.backToLogin}>
                             Voltar ao login
                         </Link>
                     </div>
-                </BoxOfInputs>
-
-            </form>
+                </form>
+            </BoxOfInputs>
         </section>
     )
 }

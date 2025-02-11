@@ -5,38 +5,57 @@
     justify-content: center;
     height: 100vh;
     background: linear-gradient(270deg, var(--darkBlue) 13%, var(--blue) 100%);
-}
 
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-}
+    & .form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+        width: 300px;
 
-.buttonsDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    gap: 16px;
-}
+        & .inputDiv {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
 
-.backToLogin {
-    all: unset;
-    text-align: center;
-    color: var(--darkBlue);
-    transition: all 0.2s ease-in;
-    cursor: pointer;
-    width: fit-content;
+        & .warnings {
+            color: var(--red);
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-    &:hover {
-        color: var(--yellow);
+        & .buttonsDiv {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 16px;
+
+            & .backToLogin {
+                all: unset;
+                text-align: center;
+                color: var(--darkBlue);
+                transition: all 0.2s ease-in;
+                cursor: pointer;
+                width: fit-content;
+
+                &:hover {
+                    color: var(--yellow);
+                }
+            }
+        }
     }
 }
 
 @media screen and (width < 440px) {
-    .buttonsDiv {
-        width: 200px;
+    .section {
+        & .form {
+            width: 250px;
+        }
     }
 }
