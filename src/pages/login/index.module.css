@@ -4,38 +4,52 @@
     display: flex;
     height: 100vh;
     background: linear-gradient(270deg, var(--darkBlue) 13%, var(--blue) 100%);
-}
 
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-}
+    & .form {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+    }
 
-.buttonsDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    gap: 16px;
-}
+    & .passwordContainer {
+        display: flex;
+        gap: 8px;
+        width: 100%;
 
-.forgotPasswordButton,
-.creatAccountButton {
-    all: unset;
-    text-align: center;
-    color: var(--darkBlue);
-    transition: all 0.2s ease-in;
-    cursor: pointer;
+        & .eyePasswordIcon {
+            cursor: pointer;
+        }
+    }
 
-    &:hover {
-        color: var(--yellow);
+    & .buttonsDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        gap: 16px;
+
+        & .forgotPasswordButton,
+        .creatAccountButton {
+            all: unset;
+            text-align: center;
+            color: var(--darkBlue);
+            transition: all 0.2s ease-in;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--yellow);
+            }
+        }
     }
 }
 
 @media screen and (width < 440px) {
-    .buttonsDiv {
-        width: 200px;
+    .section {
+        & .form {
+            & .buttonsDiv {
+                width: 200px;
+            }
+        }
     }
 }

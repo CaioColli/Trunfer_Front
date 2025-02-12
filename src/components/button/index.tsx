@@ -2,11 +2,11 @@ import styles from './index.module.css'
 
 interface ButtonProps {
     text: string;
-    disabled: boolean
+    available: boolean
 }
 
-export const Button = ({ text, disabled }: ButtonProps) => {
-    const buttonClasses = disabled
+export const Button = ({ text, available }: ButtonProps) => {
+    const buttonClasses = available
         ? `${styles.button} ${styles.activeButton}`
         : styles.button
 

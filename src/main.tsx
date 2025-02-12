@@ -5,6 +5,7 @@ import { Login } from './pages/login';
 import { Cadaster } from './pages/cadaster';
 import { Route } from 'wouter';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import './main.css'
 
 const queryClient = new QueryClient();
 

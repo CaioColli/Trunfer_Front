@@ -1,0 +1,10 @@
+.alertContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    & .alert {
+        color: var(--red);
+        font-size: 14px;
+    }
+}

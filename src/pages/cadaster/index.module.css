@@ -13,20 +13,60 @@
         align-items: center;
         width: 300px;
 
-        & .inputDiv {
+        & .passwordConditionsContainer {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            width: 100%;
+            gap: 16px;
+
+            & .passwordRequirement {
+                display: flex;
+                gap: 16px;
+            }
+
+            & .passwordValidationIcon {
+                width: 14px;
+            }
+
+            & .passwordInvalid,
+            .passwordValid {
+                font-size: 14px;
+                height: 14px;
+            }
+
+            & .passwordInvalid {
+                color: var(--gray);
+            }
+
+            & .passwordValid {
+                color: var(--green);
+            }
         }
 
-        & .warnings {
-            color: var(--red);
-            font-size: 14px;
+        & .confirmPasswordRequirement {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            gap: 16px;
+
+            & .confirmPasswordValidationIcon {
+                width: 14px;
+            }
+
+            & .confirmPasswordInvalid {
+                color: var(--red);
+                font-size: 14px;
+                height: 14px;
+            }
         }
+
+        & .passwordContainer {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+
+            & .eyePasswordIcon {
+                cursor: pointer;
+            }
+        }
+
 
         & .buttonsDiv {
             display: flex;

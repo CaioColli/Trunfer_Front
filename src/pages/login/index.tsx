@@ -1,17 +1,66 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../../components/button';
 import { Input } from '../../components/input';
 import styles from './index.module.css';
 import { Link } from 'wouter';
 import { BoxOfInputs } from '../../components/inputBox';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '../../services/baseAPI';
+import { AxiosError } from 'axios';
+import { AlertMessage } from '../../components/alertMessage';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [alertVisibility, setAlertVisibility] = useState(false);
+    const [alertMessage, setAlertMessage] = useState<string[]>([]);
+
+    const [buttonVisibility, setIsButtonVisibility] = useState(false);
+
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
+    const handleVisiblePassword = () => {
+        setPasswordVisible(!passwordVisible);
+    }
+
+    const mutation = useMutation({
+        mutationFn: (login: { user_Email: string; user_Password: string }) =>
+            api.post('/user/login', login),
+        onSuccess: () => {
+            alert('Login realizado com sucesso!');
+        },
+        onError: (error: AxiosError<{ errors: string[] }>) => {
+            console.error(error);
+            setAlertVisibility(true);
+
+            if (error.response?.data?.errors) {
+                setAlertMessage(error.response.data.errors);
+            } else {
+                setAlertMessage(['Erro desconhecido ao fazer login.']);
+            }
+        }
+    });
+
+    useEffect(() => {
+        if (email !== '' && password !== '') {
+            setIsButtonVisibility(true);
+        } else {
+            setIsButtonVisibility(false);
+        }
+
+        setAlertVisibility(false);
+    }, [email, password])
+
     const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log('Dados enviados', email, password);
+
+        const user = {
+            user_Email: email,
+            user_Password: password
+        }
+
+        mutation.mutate(user);
     }
 
     return (
@@ -23,26 +72,41 @@ export const Login = () => {
                     <Input
                         placeholder="Email"
                         type='email'
+                        value={email}
                         onChange={(event) => setEmail(event.target.value)}
                     />
 
-                    <Input
-                        placeholder="Senha"
-                        type='password'
-                        onChange={(event) => setPassword(event.target.value)}
-                    />
+                    <div className={styles.passwordContainer}>
+                        <Input
+                            placeholder="Senha"
+                            type={passwordVisible ? 'text' : 'password'}
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+
+                        {!passwordVisible
+                            ?
+                            <img src="/public/icons/closedEye.svg" alt="" className={styles.eyePasswordIcon} onClick={() => handleVisiblePassword()} />
+                            :
+                            <img src="/public/icons/openEye.svg" alt="" className={styles.eyePasswordIcon} onClick={() => handleVisiblePassword()} />
+                        }
+                    </div>
+
+                    {alertVisibility && (
+                        <AlertMessage
+                            message={alertMessage}
+                        />
+                    )}
 
                     <div className={styles.buttonsDiv}>
                         <Button
                             text="Entrar"
-                            click={() => { }}
-                            isActive={false}
-                            disabled={true}
+                            available={buttonVisibility}
                         />
 
-                        <button className={styles.forgotPasswordButton}>
+                        <Link to="/" className={styles.forgotPasswordButton}>
                             Esqueci minha senha
-                        </button>
+                        </Link>
 
                         <Link to="/cadaster" className={styles.creatAccountButton}>
                             Criar conta
