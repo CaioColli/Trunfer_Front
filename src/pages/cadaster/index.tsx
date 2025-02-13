@@ -94,7 +94,7 @@ export const Cadaster = () => {
 
             setTimeout(() => {
                 setShowAlert(false);
-                setLocation('/');
+                setLocation('/login');
             }, 3000);
 
             setName('');

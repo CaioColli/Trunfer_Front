@@ -6,6 +6,8 @@ import { Cadaster } from './pages/cadaster';
 import { Route } from 'wouter';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './main.css'
+import { ProtectedPages } from './components/protectedPages';
+import { Presentation } from './pages/presentation';
 
 const queryClient = new QueryClient();
 
@@ -13,8 +15,13 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <PageContainer>
-        <Route path="/" component={Login} />
+        <Route path="/login" component={Login} />
         <Route path="/cadaster" component={Cadaster} />
+        
+        <ProtectedPages>
+          <Route path='/' component={Presentation} />
+        </ProtectedPages>
+        
       </PageContainer>
     </QueryClientProvider>
   </StrictMode>

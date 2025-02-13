@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { Button } from '../../components/button';
 import { Input } from '../../components/input';
 import styles from './index.module.css';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { BoxOfInputs } from '../../components/inputBox';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../../services/baseAPI';
 import { AxiosError } from 'axios';
 import { AlertMessage } from '../../components/alertMessage';
+import { setCookie } from '../../utils/cookie';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
@@ -20,6 +21,11 @@ export const Login = () => {
 
     const [passwordVisible, setPasswordVisible] = useState(false);
 
+    const [, setLocation] = useLocation();
+
+
+    const queryClient = useQueryClient();
+
     const handleVisiblePassword = () => {
         setPasswordVisible(!passwordVisible);
     }
@@ -27,8 +33,13 @@ export const Login = () => {
     const mutation = useMutation({
         mutationFn: (login: { user_Email: string; user_Password: string }) =>
             api.post('/user/login', login),
-        onSuccess: () => {
-            alert('Login realizado com sucesso!');
+        onSuccess: (sucess) => {
+            const token = sucess.data.token;
+            setCookie('token', token, 24);
+
+            queryClient.setQueryData(['user'], sucess.data);
+
+            setLocation('/');
         },
         onError: (error: AxiosError<{ errors: string[] }>) => {
             console.error(error);

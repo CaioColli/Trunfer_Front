@@ -2,4 +2,9 @@
 
 "funções utilitárias" -> Podem ser puras ou não, geralmente usadas para manipular o localStorage ou formatações.
 
+//
 (CSS) Usei nessa aplicação "CSS Modules" para evitar que classes CSS interfiram entre si quando se usa o mesmo nome de classe em componentes diferentes.
+
+//
+Para compartilhar dados globalmente usando React Query quando é usado "useMutation" que serve para fazer "post, patch, delete" é usado o hook (queryClient = useQueryClient();) para armazenar e em "sucess" (queryClient.setQueryData(['user'], sucess.data);). Nesse caso está salvando tudo na chave "user".
+`
