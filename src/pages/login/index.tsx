@@ -23,7 +23,6 @@ export const Login = () => {
 
     const [, setLocation] = useLocation();
 
-
     const queryClient = useQueryClient();
 
     const handleVisiblePassword = () => {
@@ -39,10 +38,9 @@ export const Login = () => {
 
             queryClient.setQueryData(['user'], sucess.data);
 
-            setLocation('/');
+            setLocation('/home');
         },
         onError: (error: AxiosError<{ errors: string[] }>) => {
-            console.error(error);
             setAlertVisibility(true);
 
             if (error.response?.data?.errors) {

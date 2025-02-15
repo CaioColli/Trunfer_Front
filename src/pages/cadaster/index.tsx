@@ -242,7 +242,7 @@ export const Cadaster = () => {
                             available={buttonVisibility}
                         />
 
-                        <Link to="/" className={styles.backToLogin}>
+                        <Link to="/login" className={styles.backToLogin}>
                             Voltar ao login
                         </Link>
                     </div>

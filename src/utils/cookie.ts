@@ -24,6 +24,7 @@ export const getCookie = (name: string) => {
     return null; 
 }
 
+// Usar para logout
 export const deleteCookie = (name: string) => {
     document.cookie = name + "=; Max-Age=-99999999; path=/;";
 }
