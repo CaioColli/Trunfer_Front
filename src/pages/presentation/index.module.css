@@ -1,4 +1,277 @@
-.title {
-    color: var(--red);
-    font-size: 48px;
+.presentation {
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+
+    & .header {
+        width: 100%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 48px 120px;
+        z-index: 999;
+
+        & .menuBurguer {
+            all: unset;
+            align-items: center;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+
+            & .burguerIcon {
+                width: 32px;
+            }
+        }
+
+        & .menu {
+            & .menuList {
+                display: flex;
+                gap: 24px;
+
+                & .menuItem {
+                    all: unset;
+
+                    & .menuItemAnchor {
+                        all: unset;
+                        color: var(--white);
+                        font-size: 18px;
+                        cursor: pointer;
+                        transition: all 200ms ease-in;
+
+                        &:hover {
+                            color: var(--yellow);
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    & .main {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        background-image: url('/public/images/presentationBackground.png');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        & .mainContent {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 24px;
+            margin-left: 240px;
+            width: 450px;
+
+            & .mainTitle {
+                font-family: 'Fredoka', sans-serif;
+                color: var(--yellow);
+                font-size: 40px;
+            }
+
+            & .mainDescription {
+                font-size: 18px;
+                color: var(--white);
+                width: 300px;
+            }
+
+            & .mainButtons {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                width: 266px;
+                align-items: center;
+
+                & .mainButtonsAnchor {
+                    all: unset;
+                    color: var(--white);
+
+                    & .mainButtonsAnchorButton {
+                        all: unset;
+                        background-color: var(--yellow);
+                        width: 266px;
+                        border-radius: 8px;
+                        text-align: center;
+                        padding: 12px 0;
+                        cursor: pointer;
+                        transition: all 200ms ease-in;
+
+                        &:hover {
+                            box-shadow: 4px 4px 0px var(--white);
+                        }
+                    }
+                }
+
+                & .mainButtonsSpan {
+                    color: var(--white);
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    & .sectionCards {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        align-items: center;
+
+        & .cardsTitle {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--yellow);
+            font-size: 40px;
+        }
+
+        & .cardsList {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 650px;
+            gap: 24px;
+            justify-content: center;
+
+            & .cardItem {
+                all: unset;
+                align-items: center;
+                background-color: var(--blue);
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 18px;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                min-height: 400px;
+                min-width: 300px;
+                padding-top: 24px;
+
+                & .cardImage {
+                    width: 200px;
+                    height: 200px;
+                }
+
+                & .cardTexts {
+                    display: flex;
+                    gap: 8px;
+                    flex-direction: column;
+                    width: 250px;
+                    align-items: center;
+                    text-align: center;
+
+                    & .cardsListItemTitle {
+                        color: var(--yellow);
+                    }
+
+                    & .cardsListItemDescription {
+                        color: var(--white);
+                    }
+                }
+
+            }
+        }
+
+        & .cardItem:nth-of-type(1) {
+            & .cardImage {
+                background-image: url('/public/images/howPlayCard1.png');
+            }
+        }
+
+        & .cardItem:nth-of-type(2) {
+            & .cardImage {
+                background-image: url('/public/images/howPlayCard2.png');
+            }
+        }
+
+        & .cardItem:nth-of-type(3) {
+            & .cardImage {
+                background-image: url('/public/images/howPlayCard3.png');
+            }
+        }
+
+        & .cardItem:nth-of-type(4) {
+            & .cardImage {
+                background-image: url('/public/images/howPlayCard4.png');
+            }
+        }
+    }
+}
+
+@media screen and (width > 440px) and (width < 1024px) {
+    .presentation {
+        background: linear-gradient(180deg, var(--darkBlue) 40%, var(--background) 100%);
+
+        & .header {
+            background-color: var(--blue);
+            padding: 48px 32px;
+
+            & .menuBurguer {
+                display: flex;
+            }
+
+            & .menu {
+                display: none;
+            }
+        }
+
+        & .main {
+            margin-top: 128px;
+            background-image: none;
+            height: fit-content;
+            justify-content: center;
+            background: linear-gradient(0deg, var(--darkBlue) 13%, var(--background) 100%);
+            & .mainContent {
+                margin-left: 0;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media screen and (width <=440px) {
+    .presentation {
+        gap: 48px;
+
+        & .header {
+            position: relative;
+            padding: 48px 32px;
+
+            & .menuBurguer {
+                display: flex;
+            }
+
+            & .menu {
+                display: none;
+            }
+        }
+
+        & .main {
+            height: fit-content;
+            background-image: none;
+            justify-content: center;
+
+            & .mainContent {
+                margin-left: 0px;
+                width: 300px;
+
+                & .mainButtons {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (width <=320px) {
+    .presentation {
+        gap: 24px;
+
+        & .header {
+            position: relative;
+        }
+    }
 }

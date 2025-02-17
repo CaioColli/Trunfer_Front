@@ -3,6 +3,11 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Galey', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    transform: scale(1);
 }
 
 @font-face {
@@ -26,4 +31,5 @@
     --gray: #A4A4A4;
     --red: #CB0202;
     --green: #00C507;
+    --background: #0061A1;
 }
