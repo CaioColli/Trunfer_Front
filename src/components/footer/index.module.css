@@ -1,0 +1,21 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--darkBlue);
+    padding: 48px;
+
+    & .copyright {
+        color: var(--white);
+    }
+
+    & .links {
+        display: flex;
+        gap: 16px;
+        & .link {
+            all: unset;
+            cursor: pointer;
+        }
+    }
+}

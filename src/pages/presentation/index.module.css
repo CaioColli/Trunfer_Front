@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     gap: 96px;
+    position: relative;
 
     & .header {
         width: 100%;
@@ -33,7 +34,19 @@
                 & .menuItem {
                     all: unset;
 
-                    & .menuItemAnchor {
+                    & .menuItemButton {
+                        all: unset;
+                        color: var(--white);
+                        font-size: 18px;
+                        cursor: pointer;
+                        transition: all 200ms ease-in;
+
+                        &:hover {
+                            color: var(--yellow);
+                        }
+                    }
+
+                    & .menuItemLink {
                         all: unset;
                         color: var(--white);
                         font-size: 18px;
@@ -48,6 +61,63 @@
             }
         }
 
+    }
+
+    & .sideMenu {
+        position: absolute;
+        z-index: 999;
+        background-color: var(--darkBlue);
+        background-image: url('/public/images/backgroundIcons.png');
+        background-size: auto;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 48px 24px;
+
+
+        & .sideMenuHeader {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+
+            & .closeButton {
+                all: unset;
+            }
+
+            & .logoIcon {
+                width: 150px;
+            }
+        }
+
+        & .sideMenuList {
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 50%;
+
+            & .sideMenuItem {
+                all: unset;
+                color: var(--white);
+                font-size: 24px;
+            }
+        }
+
+        & .links {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            gap: 24px;
+
+            & .link {
+                all: unset;
+            }
+        }
     }
 
     & .main {
@@ -114,7 +184,7 @@
         }
     }
 
-    & .sectionCards {
+    & .cardsSection {
         display: flex;
         flex-direction: column;
         gap: 48px;
@@ -197,14 +267,78 @@
             }
         }
     }
+
+    & .rulesSection {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        align-items: center;
+
+        & .rulesTittle {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--yellow);
+            font-size: 40px;
+        }
+
+        & .rulesTexts {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 1200px;
+
+            & .rulesSubTittle {
+                color: var(--yellow);
+                font-size: 32px;
+            }
+
+            & .rulesDescription {
+                color: var(--white);
+                font-size: 18px;
+            }
+
+            & .rulesDiv {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            & .abautTrunferDiv {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        & .rulesButton {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+
+            & .button {
+                all: unset;
+                width: 32px;
+                height: 32px;
+                background-image: url('/public/icons/upIcon.svg');
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            & .rulesButtonSpan {
+                color: var(--white);
+            }
+        }
+    }
 }
 
-@media screen and (width > 440px) and (width < 1024px) {
+@media screen and (width >=440px) and (width <=1024px) {
     .presentation {
         background: linear-gradient(180deg, var(--darkBlue) 40%, var(--background) 100%);
+        gap: 48px;
 
         & .header {
-            background-color: var(--blue);
+            background-color: var(--background);
             padding: 48px 32px;
 
             & .menuBurguer {
@@ -222,16 +356,29 @@
             height: fit-content;
             justify-content: center;
             background: linear-gradient(0deg, var(--darkBlue) 13%, var(--background) 100%);
+
             & .mainContent {
                 margin-left: 0;
                 align-items: center;
                 text-align: center;
             }
         }
+
+        & .rulesSection {
+            & .rulesTittle {
+                text-align: center;
+                max-width: 650px;
+            }
+
+            & .rulesTexts {
+                max-width: 900px;
+                padding: 0 48px;
+            }
+        }
     }
 }
 
-@media screen and (width <=440px) {
+@media screen and (width < 440px) {
     .presentation {
         gap: 48px;
 
@@ -261,6 +408,19 @@
                     width: 100%;
                     justify-content: center;
                 }
+            }
+        }
+
+        & .rulesSection {
+            gap: 24px;
+
+            & .rulesTittle {
+                text-align: center;
+                max-width: 350px;
+            }
+
+            & .rulesTexts {
+                max-width: 350px;
             }
         }
     }
