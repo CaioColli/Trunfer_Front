@@ -1,0 +1,8 @@
+.overflow {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 40%);
+    z-index: 998;
+    position: absolute;
+    top: 0;
+}

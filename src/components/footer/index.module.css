@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    background-color: var(--darkBlue);
     padding: 48px;
 
     & .copyright {

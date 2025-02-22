@@ -21,15 +21,17 @@ body {
 }
 
 :root {
-    --yellow: #FFBF3F;
     --lightBlue: #0086DD;
     --darkBlue: #004877;
-    --blue: #1477B8;
     --transparentBlue: rgba(12, 100, 158, 0.4);
-    --white: #F8F8F8;
+    --red: #CB0202;
+    
+    
     --black: #303030;
     --gray: #A4A4A4;
-    --red: #CB0202;
-    --green: #00C507;
-    --background: #0061A1;
+    --green: #077D6A;
+    --blue: #07617D;
+    --yellow: #F9A828;
+    --white: #ECECEB;
+    --background: #2E383F;
 }
