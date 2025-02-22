@@ -75,6 +75,7 @@ export const Cadaster = () => {
         }
 
         setAlertVisibility(false);
+        setDifferentPasswordVisibility(false);
     }, [name, email, password, confirmPassword]);
 
     useEffect(() => {
