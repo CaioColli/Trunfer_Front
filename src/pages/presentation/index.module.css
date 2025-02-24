@@ -536,6 +536,15 @@
                         left: auto;
                     }
                 }
+
+                & .sideMenu {
+                    width: 100%;
+
+                    & .sideMenuHeader,
+                    .sideMenuNav {
+                        width: 80%;
+                    }
+                }
             }
 
             & .rulesSection {
@@ -560,6 +569,18 @@
 
         & .header {
             position: relative;
+        }
+
+        & .mainContainer {
+            & .mainContent {
+                & .sideMenu {
+                    gap: 32px;
+
+                    & .sideMenuImg {
+                        width: 100px;
+                    }
+                }
+            }
         }
     }
 }

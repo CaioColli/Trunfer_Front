@@ -3,7 +3,7 @@ import logoIcon from '/public/icons/pageIcon.svg';
 import burguerIcon from '/public/icons/burguerIcon.svg';
 import { Link } from 'wouter';
 import { Footer } from '../../components/footer';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import githubIcon from '/public/icons/githubIcon.svg';
 import linkedinIcon from '/public/icons/linkedinIcon.svg';
 import mascot from '/public/images/mascot.svg';
@@ -11,10 +11,26 @@ import mouseIcon from '/public/icons/mouseIcon.svg';
 import howPlayIcon from '/public/icons/howPlayIcon.svg';
 import mailIcon from '/public/icons/mailIcon.svg';
 import fileIcon from '/public/icons/fileIcon.svg';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Overflow } from '../../components/overflow';
 
 export const Presentation = () => {
     const [sideMenu, setSideMenu] = useState(false);
+    const sideMenuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (sideMenuRef.current && !sideMenuRef.current.contains(event.target as Node)) {
+                setSideMenu(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+    }, [])
 
     useEffect(() => {
         const disableScroll = (event: Event) => {
@@ -145,60 +161,68 @@ export const Presentation = () => {
                         </div>
                     </div>
 
-                    {sideMenu && (
-                        <aside className={styles.sideMenu}>
-                            <header className={styles.sideMenuHeader}>
-                                <img src={logoIcon} alt="Logo página Trunfer" className={styles.sideMenuImg} />
+                    <AnimatePresence>
+                        {sideMenu && (
+                            <motion.aside
+                                initial={{ x: -1000 }}
+                                animate={{ x: 0 }}
+                                exit={{ x: -1000 }}
+                                transition={{ duration: 0.4, ease: 'easeIn' }}
+                                className={styles.sideMenu}
+                                ref={sideMenuRef}
+                            >
+                                <header className={styles.sideMenuHeader}>
+                                    <img src={logoIcon} alt="Logo página Trunfer" className={styles.sideMenuImg} />
 
-                                <button className={styles.buttonCloseSideMenu} onClick={() => setSideMenu(!sideMenu)}>
+                                    <button className={styles.buttonCloseSideMenu} onClick={() => setSideMenu(!sideMenu)}>
 
-                                </button>
-                            </header>
-
-                            <nav className={styles.sideMenuNav}>
-                                <ul className={styles.sideMenuNavList}>
-                                    <li className={styles.sideMenuNavItem} onClick={() => scrollAndCloseSideMenu('howToPlay')}>
-                                        <img src={howPlayIcon} alt="Icone como jogar" />
-                                        Como jogar
-                                    </li>
-                                </ul>
-
-                                <ul className={styles.sideMenuNavList}>
-                                    <li className={styles.sideMenuNavItem}>
-                                        <img src={mailIcon} alt="Icone como jogar" />
-                                        Contato
-                                    </li>
-                                    <li className={styles.sideMenuNavItem}>
-                                        <img src={fileIcon} alt="Icone como jogar" />
-                                        Assets
-                                    </li>
-                                </ul>
-
-                                <ul className={styles.sideMenuNavList}>
-                                    <li className={styles.sideMenuNavItem}>
-                                        © CaioColli
-                                    </li>
-                                </ul>
-                            </nav>
-
-                            <div className={styles.sideMenuLinks}>
-                                <a href="https://www.linkedin.com/in/caiocolli/" target='_blank' className={styles.link}>
-                                    <button className={styles.linkButton}>
-                                        <img src={linkedinIcon} alt="Icone Linkedin" className={styles.linkImg} />
                                     </button>
-                                </a>
+                                </header>
 
-                                <a href="https://github.com/CaioColli" target='_blank' className={styles.link}>
-                                    <button className={styles.linkButton}>
-                                        <img src={githubIcon} alt="Icone GitHub" className={styles.linkImg} />
-                                    </button>
-                                </a>
-                            </div>
+                                <nav className={styles.sideMenuNav}>
+                                    <ul className={styles.sideMenuNavList}>
+                                        <li className={styles.sideMenuNavItem} onClick={() => scrollAndCloseSideMenu('howToPlay')}>
+                                            <img src={howPlayIcon} alt="Icone como jogar" />
+                                            Como jogar
+                                        </li>
+                                    </ul>
 
-                            <img src={mascot} alt="Imagem mascote Trunfer" className={styles.sideMenuImg} />
-                        </aside>
-                    )}
+                                    <ul className={styles.sideMenuNavList}>
+                                        <li className={styles.sideMenuNavItem}>
+                                            <img src={mailIcon} alt="Icone como jogar" />
+                                            Contato
+                                        </li>
+                                        <li className={styles.sideMenuNavItem}>
+                                            <img src={fileIcon} alt="Icone como jogar" />
+                                            Assets
+                                        </li>
+                                    </ul>
 
+                                    <ul className={styles.sideMenuNavList}>
+                                        <li className={styles.sideMenuNavItem}>
+                                            © CaioColli
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                                <div className={styles.sideMenuLinks}>
+                                    <a href="https://www.linkedin.com/in/caiocolli/" target='_blank' className={styles.link}>
+                                        <button className={styles.linkButton}>
+                                            <img src={linkedinIcon} alt="Icone Linkedin" className={styles.linkImg} />
+                                        </button>
+                                    </a>
+
+                                    <a href="https://github.com/CaioColli" target='_blank' className={styles.link}>
+                                        <button className={styles.linkButton}>
+                                            <img src={githubIcon} alt="Icone GitHub" className={styles.linkImg} />
+                                        </button>
+                                    </a>
+                                </div>
+
+                                <img src={mascot} alt="Imagem mascote Trunfer" className={styles.sideMenuImg} />
+                            </motion.aside>
+                        )}
+                    </AnimatePresence>
                 </div>
             </main>
 
