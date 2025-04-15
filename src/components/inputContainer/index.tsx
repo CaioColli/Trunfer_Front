@@ -5,7 +5,7 @@ interface BoxProps {
     text: string;
 }
 
-export const BoxOfInputs = ({ children, text }: BoxProps) => {
+export const InputContainer = ({ children, text }: BoxProps) => {
     return (
         <div className={styles.box}>
             <header className={styles.boxHeader}>

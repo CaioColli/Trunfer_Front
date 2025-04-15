@@ -1,13 +1,17 @@
 import styles from './index.module.css'
-import { useEffect, useState } from 'react';
-import { AxiosError } from 'axios';
+
 import { useMutation } from '@tanstack/react-query';
 import { Link, useLocation } from 'wouter';
+import { AxiosError } from 'axios';
+
+import { useEffect, useState } from 'react';
+
 import { api } from '../../services/baseAPI';
+
 import { Button } from '../../components/button'
+import { InputContainer } from '../../components/inputContainer';
 import { Input } from '../../components/input'
 import { Alert } from '../../components/alert';
-import { BoxOfInputs } from '../../components/inputBox';
 import { AlertMessage } from '../../components/alertMessage';
 
 export const Cadaster = () => {
@@ -87,6 +91,7 @@ export const Cadaster = () => {
         }
     }, [confirmPassword]);
 
+    // Responsável por enviar o cadastro do usuário
     const mutation = useMutation({
         mutationFn: (newUser: { user_Name: string; user_Email: string; user_Password: string }) =>
             api.post('/user/cadaster', newUser),
@@ -141,7 +146,7 @@ export const Cadaster = () => {
                 />
             )}
 
-            <BoxOfInputs
+            <InputContainer
                 text='CADASTRO'
             >
                 <form className={styles.form} onSubmit={submitForm}>
@@ -248,7 +253,7 @@ export const Cadaster = () => {
                         </Link>
                     </div>
                 </form>
-            </BoxOfInputs>
+            </InputContainer>
         </section>
     )
 }

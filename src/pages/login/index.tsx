@@ -1,14 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Button } from '../../components/button';
-import { Input } from '../../components/input';
 import styles from './index.module.css';
-import { Link, useLocation } from 'wouter';
-import { BoxOfInputs } from '../../components/inputBox';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { api } from '../../services/baseAPI';
 import { AxiosError } from 'axios';
-import { AlertMessage } from '../../components/alertMessage';
+import { Link, useLocation } from 'wouter';
+
+import { useEffect, useState } from 'react';
+
+import { api } from '../../services/baseAPI';
 import { setCookie } from '../../utils/cookie';
+
+import { AlertMessage } from '../../components/alertMessage';
+import { Button } from '../../components/button';
+import { InputContainer } from '../../components/inputContainer';
+import { Input } from '../../components/input';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
@@ -75,7 +79,7 @@ export const Login = () => {
     return (
         <section className={styles.section}>
             <form className={styles.form} onSubmit={submitForm}>
-                <BoxOfInputs
+                <InputContainer
                     text="LOGIN"
                 >
                     <Input
@@ -122,7 +126,7 @@ export const Login = () => {
                         </Link>
                     </div>
 
-                </BoxOfInputs>
+                </InputContainer>
             </form>
         </section>
     )

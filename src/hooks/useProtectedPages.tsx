@@ -1,12 +1,12 @@
 import { useLocation } from "wouter";
-import { getCookie } from "../../utils/cookie"
+import { getCookie } from "../utils/cookie";
 import { useEffect } from "react";
 
 interface Props {
     children: React.ReactNode
 }
 
-export const ProtectedPages = ({ children }: Props) => {
+export const UseProtectedPages = ({ children }: Props) => {
 
     const token = getCookie('token');
 
