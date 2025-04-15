@@ -6,12 +6,9 @@
     position: relative;
 
     & .mainContainer {
-        height: 100vh;
-
         & .mainContent {
             background-image: url('/public/images/mainBackground.png');
             background-size: cover;
-            height: 100%;
 
             & .mainHeader {
                 display: flex;
@@ -78,6 +75,7 @@
                 padding-left: 48px;
                 position: relative;
                 gap: 48px;
+                padding: 24px 0 24px 48px;
 
                 & .mainCard {
                     background-color: rgba(0, 0, 0, 20%);
@@ -159,7 +157,7 @@
                     flex-direction: column;
                     gap: 8px;
                     position: absolute;
-                    bottom: 0;
+                    bottom: 24px;
                     left: 50%;
 
                     & .scrollIcon {
@@ -454,6 +452,7 @@
 
                     & .scrollAlert {
                         position: relative;
+                        bottom: auto;
                         top: auto;
                         left: auto;
                     }
@@ -533,6 +532,7 @@
                     & .scrollAlert {
                         position: relative;
                         top: auto;
+                        bottom: auto;
                         left: auto;
                     }
                 }

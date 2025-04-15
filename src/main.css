@@ -8,6 +8,8 @@
 
 body {
     transform: scale(1);
+    background-color: var(--black);
+    background-image: url('../public/images/backgroundIcons.png');
 }
 
 @font-face {
